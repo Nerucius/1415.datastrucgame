@@ -66,7 +66,9 @@ class ONE():
             # NOTE: the option to chose which one to play is not
             # implemented as it is not referred to in the
             # guidelines
-            while player.can_play_card(top_card):
+            while player.can_play_card(self.discard_pile.show_last_card()):
+                top_card = self.discard_pile.show_last_card()
+
                 playable = []
                 print "You can play these cards: "
                 for i in range(0, len(player)):
