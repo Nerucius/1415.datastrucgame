@@ -52,6 +52,4 @@ class Deck(Queue):
 
         print "Deck: "
         print len(deck),
-        for card in deck: print card,        
-    
-    
+        for card in deck: print card,
