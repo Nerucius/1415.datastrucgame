@@ -2,3 +2,4 @@
 ## Joc del Uno
 
 Implementacio del Uno en python per a estructura de dades.
+Aveure si funciona
