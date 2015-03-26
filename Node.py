@@ -3,8 +3,8 @@
 
 class Node():
 
-    def __init__(self):
-        self.__data = None
+    def __init__(self, item=None):
+        self.__data = item
         self.__next = None
         self.__prev = None
 

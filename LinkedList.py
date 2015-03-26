@@ -1,4 +1,4 @@
-
+from Node import *
 
 
 class LinkedList():
@@ -13,7 +13,7 @@ class LinkedList():
         pass
 
     def isEmpty(self):
-        return self.__head==None
+        return self.__head ==None
 
     def insert(self,index,item):
         pass
@@ -26,10 +26,10 @@ class LinkedList():
         new_node.set_data(item)
 
         if self.__head == None:
-            self.__head = item
-        else :
-            probe = self.__head.next()
-            while (probe != None):
+            self.__head = Node(item)
+        else:
+            probe = self.__head
+            while (probe.next() != None):
                 probe = probe.next()
 
             probe.set_next(new_node)
@@ -41,12 +41,26 @@ class LinkedList():
         else:
             pass
 
-    def len (self):
+    def __str__(self):
+        probe = self.__head
+        str = "["
+
+        while probe != None:
+            str += probe.get_data() + ", "
+            probe = probe.next()
+
+        return str + "]"
+
+    def __len__(self):
         pass
 
     @staticmethod
     def test():
-        list = LinkedList()
-        list.enqueue("UNO")
-        list.enqueue("dos")
-        list.enqueue("tres")
+        llist = LinkedList()
+        llist.enqueue("UNO")
+        llist.enqueue("dos")
+        llist.enqueue("tres")
+
+        print llist
+
+LinkedList.test()
