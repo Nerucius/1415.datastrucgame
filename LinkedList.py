@@ -4,63 +4,127 @@ from Node import *
 class LinkedList():
 
     def __init__(self):
-        self.__head = None
+        self._head = None
 
     def __len__(self):
-        pass
+        if not self._head : return 0
+        probe= self._head
+        count =1
+        while probe.next:
+            conunt +=1
+            probe = probe.next
+        return count
 
     def get (self, index):
-        pass
+        if index > len(self)-1: return None
+        if not self._head: return None
+
+        probe = self._head
+        while index>0:
+            probe=probe.next
+            index-=1
+        return probe
+
+    def __getitem__(self, index):
+        return self.get(index)
 
     def isEmpty(self):
-        return self.__head ==None
+        return self._head ==None
+
+    def append(self, item):
+        self.insert(len(self)-1, item)
 
     def insert(self,index,item):
-        pass
+        if not self._head:
+            self._head = Node(item)
+            return
 
-    def remove(self,item):
-        pass
+        probe= self._head
 
-    def enqueue (self, item):
-        new_node= Node()
-        new_node.set_data(item)
+        while index>0:
+            if not probe.next():
+                probe.set_next(Node(item))
+                return
 
-        if self.__head == None:
-            self.__head = Node(item)
-        else:
-            probe = self.__head
-            while (probe.next() != None):
-                probe = probe.next()
+            probe= probe.next()
+            index-=1
 
-            probe.set_next(new_node)
+        temp = probe.next()
+        probe.set_next(Node(item))
+        probe.next().set_next(temp)
 
-    def dequeue (self):
-        if len(self)==1:
-            return self.__head
-            self.__head = None
-        else:
-            pass
+    def __delitem__(self, index):
+        """ Eliminar Index """
+        if index > len(self)-1 or not self._head: return
 
-    def __str__(self):
-        probe = self.__head
-        str = "["
+        if index == 0:
+            self._head = self._head.next()
+            return
 
-        while probe != None:
-            str += probe.get_data() + ", "
+        probe = self._head
+        while index>1:
+            probe = probe.next()
+            index-=1
+        probe.set_next(probe.next().next())
+
+    def __iter__(self):
+        probe = self._head
+        while probe:
+            yield probe
+            probe = probe.next()
+        return
+
+    def remove(self, item):
+        if not self._head: return
+
+        probe = self._head
+        while probe:
+            if probe.next().get_data() == item:
+                probe.set_next(probe.next().next())
+                return True
             probe = probe.next()
 
-        return str + "]"
+        return False
+
+    def __str__(self):
+        probe = self._head
+        res = "["
+        item_list = []
+
+        while probe:
+            item_list += [str(probe.get_data())]
+            probe = probe.next()
+
+        res = res + ", ".join(item_list)
+
+        return res + "]"
 
     def __len__(self):
-        pass
+        i = 0
+        probe = self._head
+        while probe:
+            probe = probe.next()
+            i += 1
+        return i
 
     @staticmethod
     def test():
         llist = LinkedList()
-        llist.enqueue("UNO")
-        llist.enqueue("dos")
-        llist.enqueue("tres")
-
+        llist.append("UNO")
+        print llist
+        llist.append("dos")
+        print llist
+        llist.append("tres")
         print llist
 
-LinkedList.test()
+
+        llist.remove("dos")
+        print llist
+
+        del llist[0]
+        print "deleted 0", llist
+
+        llist.append("QUaTRO")
+
+        for node in llist:
+            print node.get_data(),
