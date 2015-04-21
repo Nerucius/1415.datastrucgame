@@ -8,38 +8,46 @@ class CircularLinkedList(LinkedList):
     def insert(self, index, item):
         LinkedList.insert(self, index, item)
 
-        if len(self) == 1:
-            self._head.set_next(self._head)
+        # Link queue
+        self._get_node(len(self)-1).set_next(self._head)
 
-    def __len__(self):
-        n = 0
+    def remove(self, item):
+        if not self._head:
+            return False
+
+        # Special case for head
+        if self._head.get_data() == item:
+            tail = self._get_tail()
+            self._head = self._head.next()
+            tail.set_next(self._head)
+            return True
+
         probe = self._head
-        while probe and probe.next() != self._head:
-            n += 1
-            probe = probe.next
-        return n
-
-    def __str__(self):
-        probe = self._head
-        res = "["
-        item_list = []
-
-        while probe and probe.next() != self._head:
-            item_list += [str(probe.get_data())]
+        # While we have next, and the next one is not the head
+        while probe.next() and probe.next() is not self._head:
+            # print probe.next().get_data()
+            if probe.next().get_data() == item:
+                probe.set_next(probe.next().next())
+                return True
             probe = probe.next()
 
-        res += ", ".join(item_list)
-
-        return res + "]"
+        return False
 
     @staticmethod
     def test():
-        list = CircularLinkedList()
-        list.append("Uno")
-        list.append("Dos")
-        list.append("Tres")
-        list.append("Cuatro")
+        circular = CircularLinkedList()
 
-        print list
+        circular.append("ZERO")
+        circular.append("ONE")
+        circular.append("TWO")
+        print "3 items:", circular
+        print "item 1:", circular.get(1)
 
-CircularLinkedList.test()
+        circular.insert(2, "NEW TWO")
+        print "insert at 2", circular
+
+        circular.remove("ZERO")
+        print "remove ZERO:", circular
+
+if __name__ == "__main__":
+    CircularLinkedList.test()

@@ -1,5 +1,6 @@
 from Player import *
 from DiscardPile import *
+from adt.CircularDoubleLinkedList import *
 
 
 class ONE():
@@ -11,7 +12,7 @@ class ONE():
         self.deck = Deck()
         self.discard_pile = DiscardPile(self.deck.deal_one_card())
 
-        self.players = CircularLinkedList()
+        self.players = CircularDoubleLinkedList()
         self.n_players = 0
         self.curr_player = 0
 
@@ -165,3 +166,6 @@ def start():
     game = ONE()
     game.prepare_game()
     game.run_game()
+
+if __name__ == "__main__":
+    start()

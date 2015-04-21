@@ -5,6 +5,9 @@ class SpecialCard(Card):
     # Special types:
     REVERSE = 0
     SKIP = 1
+    PLUS_TWO = 2
+    PLUS_FOUR = 3
+    CHANGE_COLOR = 4
 
     def __init__(self, special, color):
         self._color = color

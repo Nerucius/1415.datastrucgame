@@ -2,7 +2,8 @@ from adt.LinkedList import *
 
 
 class LinkedQueue(LinkedList):
-    """ Linked Queue implementation, objects are added to
+    """
+        Linked Queue implementation, objects are added to
         the end of the Queue and are taken from the beginning.
     """
 
@@ -13,7 +14,7 @@ class LinkedQueue(LinkedList):
         self.append(item)
 
     def dequeue(self):
-        item = self.get(len(self)-1).get_data()
+        item = self.get(0)
         self.remove(item)
         return item
 
@@ -36,7 +37,8 @@ class LinkedQueue(LinkedList):
         print queue
 
 
-LinkedQueue.test()
+if __name__ == "__main__":
+    LinkedQueue.test()
 
 
 

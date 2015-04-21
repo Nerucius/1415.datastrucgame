@@ -21,3 +21,12 @@ class Node():
 
     def set_prev(self, prev):
         self.__prev = prev
+
+    def __str__(self):
+        res = "[Node: " + str(self.get_data())
+        if self.next():
+            res += "\t| next: " + str(self.next().get_data())
+        if self.prev():
+            res += "\t| prev: " + str(self.prev().get_data())
+        res += "]"
+        return res

@@ -19,7 +19,7 @@ class Queue(object):
     def dequeue(self):
         return self.__data.pop(0)
 
-    def isEmpty(self):
+    def is_empty(self):
         return self.__data == []
 
     # Overloaded methods
