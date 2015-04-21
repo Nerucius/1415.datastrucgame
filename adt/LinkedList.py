@@ -2,69 +2,82 @@ from adt.Node import *
 
 
 class LinkedList():
-
     def __init__(self):
         self._head = None
 
-    def __len__(self):
-        if not self._head : return 0
-        probe= self._head
-        count =1
-        while probe.next:
-            conunt +=1
-            probe = probe.next
-        return count
-
-    def get (self, index):
-        if index > len(self)-1: return None
-        if not self._head: return None
+    def get(self, index):
+        if index > len(self) - 1:
+            return None
+        if not self._head:
+            return None
 
         probe = self._head
-        while index>0:
-            probe=probe.next
-            index-=1
+        while index > 0:
+            probe = probe.next()
+            index -= 1
         return probe
+
+    def remove(self, item):
+        if not self._head:
+            False
+
+        if self._head.get_data() == item:
+            self._head = self._head.next()
+            return True
+
+        probe = self._head
+        while probe and probe.next():
+            if probe.next().get_data() == item:
+                probe.set_next(probe.next().next())
+                return True
+            probe = probe.next()
+
+        return False
+
+    def is_empty(self):
+        return self._head is None
+
+    def append(self, item):
+        # Insert at last position
+        self.insert(len(self), item)
+
+    def insert(self, index, item):
+        # Special cases
+        if not self._head:
+            self._head = Node(item)
+            return
+        if index == 0:
+            self._head = Node(item, self._head)
+            return
+
+        # Bounds checking, max insertion is at the end of list
+        index = min(index, len(self))
+
+        probe = self._head
+        while index > 1:
+            probe = probe.next()
+            index -= 1
+
+        probe.set_next(Node(item, probe.next()))
+
+    # Overload Methods
 
     def __getitem__(self, index):
         return self.get(index)
 
-    def isEmpty(self):
-        return self._head ==None
-
-    def append(self, item):
-        self.insert(len(self)-1, item)
-
-    def insert(self,index,item):
-        if not self._head:
-            self._head = Node(item)
-            return
-
-        probe= self._head
-
-        while index>0:
-            if not probe.next():
-                probe.set_next(Node(item))
-                return
-
-            probe= probe.next()
-            index-=1
-
-        temp = probe.next()
-        probe.set_next(Node(item))
-        probe.next().set_next(temp)
-
     def __delitem__(self, index):
-        """ Eliminar Index """
-        if index > len(self)-1 or not self._head: return
+        """ Delete Index """
+        if index > len(self) - 1 or not self._head:
+            return
 
         if index == 0:
             self._head = self._head.next()
             return
 
         probe = self._head
-        while index>1:
+        while index > 1:
             probe = probe.next()
-            index-=1
+            index -= 1
         probe.set_next(probe.next().next())
 
     def __iter__(self):
@@ -73,18 +86,6 @@ class LinkedList():
             yield probe
             probe = probe.next()
         return
-
-    def remove(self, item):
-        if not self._head: return
-
-        probe = self._head
-        while probe:
-            if probe.next().get_data() == item:
-                probe.set_next(probe.next().next())
-                return True
-            probe = probe.next()
-
-        return False
 
     def __str__(self):
         probe = self._head
@@ -109,22 +110,25 @@ class LinkedList():
 
     @staticmethod
     def test():
-        llist = LinkedList()
-        llist.append("UNO")
-        print llist
-        llist.append("dos")
-        print llist
-        llist.append("tres")
-        print llist
+        linked = LinkedList()
+
+        linked.append("zero")
+        linked.append("uno")
+        linked.append("dos")
+
+        print linked
+        print "lenght:", len(linked)
+        linked.insert(0, "NUEVO")
+        print linked
+
+        print "for: ",
+        for item in linked:
+            print item.get_data(),
+
+        print "\nitem at index 1:", linked[1].get_data()
+
+        print linked.remove("zero")
+        print "removed item:", linked
 
 
-        llist.remove("dos")
-        print llist
-
-        del llist[0]
-        print "deleted 0", llist
-
-        llist.append("QUaTRO")
-
-        for node in llist:
-            print node.get_data(),
+LinkedList.test()

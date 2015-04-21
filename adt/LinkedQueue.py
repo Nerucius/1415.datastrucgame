@@ -1,42 +1,42 @@
-__author__ = 'xavier'
-
 from adt.LinkedList import *
 
 
 class LinkedQueue(LinkedList):
+    """ Linked Queue implementation, objects are added to
+        the end of the Queue and are taken from the beginning.
+    """
+
     def __init__(self):
-        super(LinkedQueue, self).__init__()
+        LinkedList.__init__(self)
 
     def enqueue(self, item):
-        new_node = Node(item)
-
-        if self._head == None:
-            self._head = Node(item)
-        else:
-            probe = self._head
-            while (probe.next() != None):
-                probe = probe.next()
-
-            probe.set_next(new_node)
+        self.append(item)
 
     def dequeue(self):
-        if len(self) == 1:
-            temp = self._head
-            self._head = None
-            return temp
+        item = self.get(len(self)-1).get_data()
+        self.remove(item)
+        return item
 
-        if len(self) == 2:
-            temp = self._head.next()
-            self._head.set_next(None)
-            return temp
+    @staticmethod
+    def test():
+        queue = LinkedQueue()
 
-        probe = self._head
-        while probe.next().next():
-            probe = probe.next()
+        queue.enqueue("Uno")
+        queue.enqueue("Dos")
+        queue.enqueue("Tres")
+        print queue
 
-        temp = probe.next()
-        probe.set_next(None)
-        return temp
+        queue.dequeue()
+        print queue
+
+        queue.dequeue()
+        print queue
+
+        queue.dequeue()
+        print queue
+
+
+LinkedQueue.test()
 
 
 

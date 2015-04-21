@@ -6,20 +6,10 @@ class CircularLinkedList(LinkedList):
         LinkedList.__init__(self)
 
     def insert(self, index, item):
-        if not self._head:
-            self._head = Node(item)
+        LinkedList.insert(self, index, item)
+
+        if len(self) == 1:
             self._head.set_next(self._head)
-            return
-
-        probe = self._head
-
-        while index > 0:
-            probe = probe.next()
-            index -= 1
-
-        temp = probe.next()
-        probe.set_next(Node(item))
-        probe.next().set_next(temp)
 
     def __len__(self):
         n = 0
@@ -28,7 +18,6 @@ class CircularLinkedList(LinkedList):
             n += 1
             probe = probe.next
         return n
-
 
     def __str__(self):
         probe = self._head
@@ -39,10 +28,9 @@ class CircularLinkedList(LinkedList):
             item_list += [str(probe.get_data())]
             probe = probe.next()
 
-        res = res + ", ".join(item_list)
+        res += ", ".join(item_list)
 
         return res + "]"
-
 
     @staticmethod
     def test():

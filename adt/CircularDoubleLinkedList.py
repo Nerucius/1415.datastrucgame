@@ -1,6 +1,6 @@
-__author__ = 'xavier'
+from adt.CircularLinkedList import *
 
-class CircularDoubleLinkedList:
+class CircularDoubleLinkedList(CircularLinkedList):
     def __init__(self):
         self.__head=None
 
@@ -16,13 +16,7 @@ class CircularDoubleLinkedList:
     def get(self,index):
         pass
 
-    def __getitem__(self, item):
-        pass
-
-    def append(self,item):
-        pass
-
-    def insert(self,item,index):
+    def append(self, item):
         pass
 
     def remove(self, item):

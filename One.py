@@ -165,6 +165,3 @@ def start():
     game = ONE()
     game.prepare_game()
     game.run_game()
-
-
-start()
