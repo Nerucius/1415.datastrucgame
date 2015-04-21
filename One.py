@@ -11,7 +11,7 @@ class ONE():
         self.deck = Deck()
         self.discard_pile = DiscardPile(self.deck.deal_one_card())
 
-        self.players = []
+        self.players = CircularLinkedList()
         self.n_players = 0
         self.curr_player = 0
 
