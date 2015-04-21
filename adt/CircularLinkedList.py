@@ -1,4 +1,4 @@
-from LinkedList import *
+from adt.LinkedList import *
 
 
 class CircularLinkedList(LinkedList):

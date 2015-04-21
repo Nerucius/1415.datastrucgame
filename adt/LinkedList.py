@@ -1,4 +1,4 @@
-from Node import *
+from adt.Node import *
 
 
 class LinkedList():

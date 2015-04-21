@@ -1,4 +1,4 @@
-from Stack import *
+from adt.Stack import *
 from Deck import *
 
 

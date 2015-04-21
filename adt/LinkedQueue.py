@@ -1,6 +1,6 @@
 __author__ = 'xavier'
 
-from LinkedList import *
+from adt.LinkedList import *
 
 
 class LinkedQueue(LinkedList):

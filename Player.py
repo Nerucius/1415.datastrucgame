@@ -1,4 +1,4 @@
-from PriorityQueue import *
+from adt.PriorityQueue import *
 from Card import *
 
 class Player(PriorityQueue):

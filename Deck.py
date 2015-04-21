@@ -1,6 +1,6 @@
 from random import shuffle
 
-from Queue import *
+from adt.Queue import *
 from SpecialCard import *
 
 
