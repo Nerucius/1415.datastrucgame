@@ -14,7 +14,9 @@ class ONE():
 
         self.players = CircularDoubleLinkedList()
         self.n_players = 0
-        self.curr_player = 0
+
+        # curr_player is the Node containing the player data inside the linkedlist
+        self.curr_player = None
 
         self.skip = 0
         self.reverse = False
@@ -30,11 +32,12 @@ class ONE():
     def run_game(self):
         """ The game Loop, keeps running itself while the game is ongoing, only stopping
         if the stop criterion is met. """
+        self.curr_player = self.players.get_node(0)
 
         # Game Loop
         while not self.stop_criterion():
             # Easier to read temp vars
-            player = self.players[self.curr_player]
+            player = self.curr_player.get_data()
             top_card = self.discard_pile.show_last_card()
 
             has_played = False
@@ -148,9 +151,9 @@ class ONE():
         """ Changes the turn, takes into account the reverse status to change in one
         direction or the other."""
         if not self.reverse:
-            self.curr_player = (self.curr_player + 1) % self.n_players
+            self.curr_player = self.curr_player.next()
         else:
-            self.curr_player = (self.curr_player - 1) % self.n_players
+            self.curr_player = self.curr_player.prev()
 
     @staticmethod
     def announce_champion(player):

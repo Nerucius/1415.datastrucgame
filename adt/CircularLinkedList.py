@@ -9,7 +9,7 @@ class CircularLinkedList(LinkedList):
         LinkedList.insert(self, index, item)
 
         # Link queue
-        self._get_node(len(self)-1).set_next(self._head)
+        self.get_node(len(self)-1).set_next(self._head)
 
     def remove(self, item):
         if not self._head:

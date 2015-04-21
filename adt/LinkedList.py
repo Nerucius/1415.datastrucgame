@@ -10,9 +10,9 @@ class LinkedList():
         self._head = None
 
     def get(self, index):
-        return self._get_node(index).get_data()
+        return self.get_node(index).get_data()
 
-    def _get_node(self, index):
+    def get_node(self, index):
         """ Helper method to get node at index. """
         if index < 0 or index >= len(self):
             return None
@@ -27,7 +27,7 @@ class LinkedList():
 
     def _get_tail(self):
         """ Helper method to get the tail node. """
-        return self._get_node(len(self)-1)
+        return self.get_node(len(self)-1)
 
     def remove(self, item):
         if not self._head:
