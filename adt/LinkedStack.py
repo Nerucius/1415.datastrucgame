@@ -21,6 +21,9 @@ class LinkedStack(LinkedList):
 
         return item
 
+    def peek(self):
+        return self.get(0)
+
     @staticmethod
     def test():
         stack = LinkedStack()

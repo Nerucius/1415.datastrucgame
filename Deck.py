@@ -1,16 +1,16 @@
 from random import shuffle
 
-from adt.Queue import *
+from adt.LinkedQueue import *
 from SpecialCard import *
 
 
-class Deck(Queue):
+class Deck(LinkedQueue):
     """Clase que define el comportamiento de un mazo de cartas. Estructura de
     Stack, con capacidad de repartir cartas y devolver un elemento i"""
 
     def __init__(self):
         # Init the Queue
-        super(Deck, self).__init__()
+        LinkedQueue.__init__(self)
 
         # Init all 40 cards + 16 wildcards (2 of each type times 4 colors) 
         cards = []

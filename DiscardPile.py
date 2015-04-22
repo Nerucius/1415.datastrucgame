@@ -1,14 +1,14 @@
-from adt.Stack import *
+from adt.LinkedStack import *
 from Deck import *
 
 
-class DiscardPile(Stack):
+class DiscardPile(LinkedStack):
     """ Monton de cartas descartadas por los jugadores, la carta de encima del
     todo se usa para la siguiente jugada. """
 
     def __init__(self, init_card):
         # Init the Stack
-        super(DiscardPile, self).__init__()
+        LinkedStack.__init__(self)
 
         self.push(init_card)
 

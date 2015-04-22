@@ -1,13 +1,13 @@
-from adt.PriorityQueue import *
+from adt.LinkedPriorityQueue import *
 from Card import *
 
-class Player(PriorityQueue):
+class Player(LinkedPriorityQueue):
     """ Class representing a Player inside the game. Holds a hand of cards, using a PriorityQueue
     implementation to sort them. """
 
     def __init__(self, name, cards):
         # Init the PQueue
-        super(Player, self).__init__()
+        LinkedPriorityQueue.__init__(self)
 
         self.__name = name
 

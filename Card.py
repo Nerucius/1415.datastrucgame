@@ -24,38 +24,38 @@ class Card(object):
         # Polymorphism example, here first checks if both cards are special, if so, we are clear
         # to use the SpecialCard method getSpecial()
         if self.is_special() and card.is_special():
-            return self.getSpecial() == card.get_special() or self.getColor() == card.getColor()
+            return self.get_special() == card.get_special() or self.get_color() == card.get_color()
             #return self.getSpecial() == card.getSpecial()
 
-        return self.getNumber() == card.getNumber() or self.getColor() == card.getColor()
+        return self.get_numer() == card.get_numer() or self.get_color() == card.get_color()
 
-    def getNumber(self):
+    def get_numer(self):
         return self._number
 
-    def getColor(self):
+    def get_color(self):
         return self._color
 
     def _color_to_string(self):
-        if self.getColor() == Card.RED: return "Red"
-        if self.getColor() == Card.GREEN: return "Green"
-        if self.getColor() == Card.YELLOW: return "Yellow"
-        if self.getColor() == Card.BLUE: return "Blue"
+        if self.get_color() == Card.RED: return "Red"
+        if self.get_color() == Card.GREEN: return "Green"
+        if self.get_color() == Card.YELLOW: return "Yellow"
+        if self.get_color() == Card.BLUE: return "Blue"
         return None
 
     def is_special(self):
         """ Method to be overridden by special cards extending this class. """
-        return False;
+        return False
 
     def __cmp__(self, obj):
         # Comparator overload so that PriorityQueue works
 
         # Orders first by number, then by color
-        if self.getNumber() > obj.getNumber():
+        if self.get_numer() > obj.get_numer():
             return 1
-        elif self.getNumber() == obj.getNumber():
-            if self.getColor() > obj.getColor():
+        elif self.get_numer() == obj.get_numer():
+            if self.get_color() > obj.get_color():
                 return 1
-            elif self.getColor() == obj.getColor():
+            elif self.get_color() == obj.get_color():
                 return 0
             else:
                 return -1
