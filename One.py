@@ -46,7 +46,6 @@ class ONE():
             print "\n"
             print "---------------------------------"
             print "Now playing:", player
-            print "Discard pile top:", top_card
 
             if self.skip > 0:
                 self.skip -= 1
@@ -72,6 +71,7 @@ class ONE():
             # guidelines
             while player.can_play_card(self.discard_pile.show_last_card()):
                 top_card = self.discard_pile.show_last_card()
+                print "Card on top of pile:", top_card
 
                 playable = ONE.get_playable(top_card, player)
                 print ""
