@@ -24,6 +24,8 @@ class ONE():
     def prepare_game(self):
         # Read input from player to initialize n number of players.
         self.n_players = input("Enter no. of players: ")
+        # Don't allow zero or less players
+        self.n_players = max(1, self.n_players)
 
         for i in range(self.n_players):
             name = raw_input("Name: ")
@@ -65,10 +67,7 @@ class ONE():
 
             # And now, while he is able to play, allow him to
             # choose whether to play or not, showing him a list
-            # of cards the can play.
-            # NOTE: the option to chose which one to play is not
-            # implemented as it is not referred to in the
-            # guidelines
+            # of cards they can play.
             while player.can_play_card(self.discard_pile.show_last_card()):
                 top_card = self.discard_pile.show_last_card()
                 print "Card on top of pile:", top_card
@@ -191,7 +190,7 @@ class ONE():
     def announce_champion(player):
         """Prints the champion"""
         print "====================================="
-        print player.getName(), "Has won the game."
+        print player.get_name(), "Has won the game."
         print "====================================="
         pass
 

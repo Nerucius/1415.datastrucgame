@@ -41,6 +41,9 @@ class Player(LinkedPriorityQueue):
         self.remove(played_card)
         return played_card
 
+    def get_name(self):
+        return self.__name
+
     @staticmethod
     def test():
         """ Unit test for the Player class. """

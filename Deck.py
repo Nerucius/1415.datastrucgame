@@ -29,7 +29,10 @@ class Deck(LinkedQueue):
             self.enqueue(card)
 
     def deal_one_card(self):
-        return self.dequeue()
+        if len(self) > 0:
+            return self.dequeue()
+        else:
+            raise Exception("Deck is out of cards")
 
     def deal(self, n):
         dealtCards = []
